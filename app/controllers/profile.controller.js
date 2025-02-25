@@ -11,6 +11,7 @@ exports.create = (req, res) => {
         name: req.body.name,
         address: req.body.address,
         email:req.body.email,
+        wallet: req.body.wallet,
         
     });
 
@@ -28,9 +29,10 @@ exports.create = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    const wallet = req.params.wallet;
+    const walletAddress = req.params.wallet;
+    console.log(walletAddress)
 
-    Profile.findByWallet(wallet)
+    Profile.findOne({"wallet": walletAddress})
         .then(data => {
             if(!data)
                 res.status(404).send({ message: "Not found your profile"});
