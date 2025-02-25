@@ -10,7 +10,8 @@ exports.create = (req, res) => {
     const profile = new Profile({
         name: req.body.name,
         address: req.body.address,
-        email:req.body.email
+        email:req.body.email,
+        
     });
 
     profile
@@ -24,4 +25,44 @@ exports.create = (req, res) => {
                     err.message || "Some error occurred while creating the Profile."
             });
         });
+};
+
+exports.findOne = (req, res) => {
+    const wallet = req.params.wallet;
+
+    Profile.findByWallet(wallet)
+        .then(data => {
+            if(!data)
+                res.status(404).send({ message: "Not found your profile"});
+            else res.send(data);
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .send({message: "Error retrieving your profile"});
+        });
+}
+
+exports.update = (req, res) => {
+    if (!req.body) {
+      return res.status(400).send({
+        message: "Data to update can not be empty!"
+      });
+    }
+  
+    const wallet = req.params.wallet;
+  
+    Tutorial.findByWalletAndUpdate(wallet, req.body, { useFindAndModify: false })
+      .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update. Maybe your profile was not found!`
+          });
+        } else res.send({ message: "Your profile was updated successfully." });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "An error occurred while updating your profile."
+        });
+      });
 };

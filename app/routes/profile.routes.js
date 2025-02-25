@@ -5,5 +5,9 @@ module.exports = app => {
 
     router.post("/", profiles.create);
 
+    router.post("/:id", profiles.update);
+
+    router.get("/:id", profiles.findOne);
+
     app.use("/api/profiles", router);
 }
