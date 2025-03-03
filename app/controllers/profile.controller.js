@@ -29,10 +29,10 @@ exports.create = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    const walletAddress = req.params.wallet;
-    console.log(walletAddress)
+    const email = req.params.email;
+    console.log(email, " -params: ", req.params)
 
-    Profile.findOne({"wallet": walletAddress})
+    Profile.findOne({"email": email})
         .then(data => {
             if(!data)
                 res.status(404).send({ message: "Not found your profile"});
@@ -66,5 +66,19 @@ exports.update = (req, res) => {
         res.status(500).send({
           message: "An error occurred while updating your profile."
         });
+      });
+};
+
+exports.listUser = (req, res) => {
+  Profile.find({ })
+      .then(data => {
+          if (!data) {
+              res.status(404).send({ message: `Profile not found` });
+          } else {
+              res.send(data);
+          }
+      })
+      .catch(err => {
+          res.status(500).send({ message: "Error retrieving profile: " + err });
       });
 };

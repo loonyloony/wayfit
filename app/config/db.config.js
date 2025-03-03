@@ -1,3 +1,3 @@
 module.exports = {
-    url: "mongodb+srv://sgukhoado:NTIE0OlAOfvJzErl@wayfit.p876l.mongodb.net/wayfit?retryWrites=true&w=majority&appName=wayfit"
+    url: "mongodb+srv://wefit365:wefit365@cluster0.h63jd.mongodb.net/wefit365?retryWrites=true&w=majority&appName=Cluster0"
 };

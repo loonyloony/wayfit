@@ -7,7 +7,9 @@ module.exports = app => {
 
     router.post("/:wallet", profiles.update);
 
-    router.get("/:wallet", profiles.findOne);
+    router.get("/:email", profiles.findOne);
+
+    router.get("/", profiles.listUser);
 
     app.use("/api/profiles", router);
 }
