@@ -2,28 +2,31 @@ const db = require("../models");
 const Profile = db.profiles;
 
 exports.create = (req, res) => {
-    if(!req.body.address) {
+    if(!req.body.email) {
         res.status(400).send({message: "Address can not be empty"});
         return;
     }
 
     const profile = new Profile({
         name: req.body.name,
-        address: req.body.address,
-        email:req.body.email,
-        wallet: req.body.wallet,
-        
+        email: req.body.email,
+        wallet: req.body.wallet,             // Optional: wallet address
+        gender: req.body.gender,             // Optional: "Male", "Female", or "Other"
+        age: req.body.age,                   // Optional: must be >= 0
+        level: req.body.level,               // Optional: must be >= 0
+        weight: req.body.weight,             // Optional: must be >= 0
+        height: req.body.height,             // Optional: must be >= 0
+        token_balance: req.body.token_balance // Optional: must be >= 0
     });
 
     profile
-        .save(profile)
+        .save()
         .then(data => {
             res.send(data);
         })
-        .catch(err =>{
+        .catch(err => {
             res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the Profile."
+                message: err.message || "Some error occurred while creating the Profile."
             });
         });
 };
