@@ -16,7 +16,11 @@ exports.create = (req, res) => {
         level: req.body.level,               // Optional: must be >= 0
         weight: req.body.weight,             // Optional: must be >= 0
         height: req.body.height,             // Optional: must be >= 0
-        token_balance: req.body.token_balance // Optional: must be >= 0
+        token_balance: req.body.token_balance, // Optional: must be >= 0
+        exercise_completed: req.body.exercise_completed || 0, // Optional: default 0
+        calories_burned: req.body.calories_burned || 0,     // Optional: default 0
+        point: req.body.point || 0,                         // Optional: default 0
+        token: req.body.token || 0,                         // Optional: default 0
     });
 
     profile
