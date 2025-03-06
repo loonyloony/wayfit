@@ -36,6 +36,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/profile.routes")(app);
+require("./app/routes/exercise.routes")(app);
 
 const PORT = process.env.PORT || 8080;
 

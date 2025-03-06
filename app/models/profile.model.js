@@ -36,10 +36,23 @@ module.exports = mongoose => {
             },
             wallet: {
                 type: String
-            }
-            // exercise_completed: { type: Number, default: 0 }, // Added default value
-            // calories_burned: { type: Number, default: 0 }, // Added default value
-            // point: { type: Number, default: 0 }, // Added default value
+            },
+            exercise_completed: { 
+                type: Number, 
+                default: 0 
+            }, // Added default value
+            calories_burned: { 
+                type: Number, 
+                default: 0 
+            }, // Added default value
+            point: { 
+                type: Number, 
+                default: 0 
+            }, // Added default value
+            token: { 
+                type: Number, 
+                default: 0 
+            }, // Added default value
         }
     );
 
