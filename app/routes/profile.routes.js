@@ -8,6 +8,9 @@ module.exports = app => {
     router.post("/:wallet", profiles.update);
 
     router.get("/:email", profiles.findOne);
+    
+     // Update profile by email using PUT method
+     router.put("/:email", profiles.updateByEmail);
 
     router.get("/", profiles.listUser);
 

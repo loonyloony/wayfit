@@ -89,3 +89,31 @@ exports.listUser = (req, res) => {
           res.status(500).send({ message: "Error retrieving profile: " + err });
       });
 };
+
+exports.updateByEmail = (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Data to update cannot be empty!"
+    });
+  }
+
+  const email = req.params.email;
+
+  Profile.findOneAndUpdate(
+    { email: email },
+    req.body,
+    { new: true, runValidators: true, useFindAndModify: false }
+  )
+    .then(data => {
+      if (!data) {
+        res.status(404).send({ message: `Profile not found with email: ${email}` });
+      } else {
+        res.send(data);
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || `Error updating profile with email: ${email}`
+      });
+    });
+};
