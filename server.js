@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+require('dotenv').config(); // Add dotenv for SUI environment variables
 
 const app = express();
 
@@ -35,8 +36,11 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to WayFit application." });
 });
 
+// Load routes
 require("./app/routes/profile.routes")(app);
 require("./app/routes/exercise.routes")(app);
+require("./app/routes/sui.routes")(app); 
+require('./app/routes/auth.routes')(app);
 
 const PORT = process.env.PORT || 8080;
 
