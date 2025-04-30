@@ -5,9 +5,11 @@ module.exports = app => {
 
     // Create a new daily exercise record
     router.post("/", dailyExercise.create);
+    router.get("/", dailyExercise.findAll);
 
     // Get daily exercise records by user
     router.get("/user/:user", dailyExercise.findByUser);
+    router.get("/performanceByType", dailyExercise.getPerformanceByType);
 
     app.use("/api/daily_exercise", router);
 };
